@@ -98,11 +98,21 @@ document.querySelectorAll('input, select').forEach(element => {
 
 window.syncInternetData = syncInternetData;
 window.applyMethodPreset = applyMethodPreset;
-window.addEventListener('load', () => {
-    calculateFalak();
-    generate30DaysTable();
-    // Memunculkan dialog izin lokasi sejak awal. Setelah disetujui, GPS dan
-    // data atmosfer disinkronkan otomatis tanpa tindakan tambahan pengguna.
-    syncInternetData();
-    setInterval(updateLiveTimer, 1000);
-});
+function initializeApp() {
+    try {
+        calculateFalak();
+        generate30DaysTable();
+        // Memunculkan dialog izin lokasi sejak awal. Setelah disetujui, GPS dan
+        // data atmosfer disinkronkan otomatis tanpa tindakan tambahan pengguna.
+        syncInternetData();
+        setInterval(updateLiveTimer, 1000);
+    } catch (error) {
+        console.error('Miqatara gagal diinisialisasi:', error);
+    }
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp, { once: true });
+} else {
+    initializeApp();
+}
