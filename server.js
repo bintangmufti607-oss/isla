@@ -57,6 +57,13 @@ const server = http.createServer((req, res) => {
   }
 
   fs.stat(filePath, (statError, stats) => {
+    // Jangan mengirim index.html untuk aset yang hilang. Respons HTML pada
+    // permintaan .js menyebabkan browser berhenti dengan SyntaxError yang sulit dilacak.
+    if (statError && path.extname(requestedPath)) {
+      send(res, 404, 'Not Found');
+      return;
+    }
+
     const fallbackToIndex = statError || !stats.isFile();
     const finalPath = fallbackToIndex ? path.join(ROOT, 'index.html') : filePath;
     const ext = path.extname(finalPath).toLowerCase();
