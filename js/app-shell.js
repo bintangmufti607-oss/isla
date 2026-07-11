@@ -66,6 +66,8 @@ async function refreshInternetData() {
 }
 
 function syncInternetData() {
+    // Tampilkan data untuk koordinat aktif segera, tanpa menunggu dialog GPS.
+    refreshInternetData();
     const complete = () => refreshInternetData();
 
     if (!navigator.geolocation) return complete();
