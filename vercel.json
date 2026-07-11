@@ -1,11 +1,7 @@
 {
   "functions": {
     "server.js": {
-      "includeFiles": [
-        "index.html",
-        "wmm2025.js",
-        "js/**"
-      ]
+      "includeFiles": "js/**"
     }
   }
 }
