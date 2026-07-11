@@ -58,7 +58,7 @@
         }
     </style>
     <script>
-        tailwind.config = {
+        if (window.tailwind) tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
@@ -417,7 +417,8 @@
     <script src="wmm2025.js"></script>
     <!-- JavaScript Engine -->
     <script>
-        lucide.createIcons();
+        // Ikon bersifat opsional: kegagalan CDN tidak boleh menghentikan kalkulasi.
+        if (window.lucide) lucide.createIcons();
 
         // Konvensi Sudut Falak Internasional
         const methodAngles = {
