@@ -39,6 +39,11 @@ function resolvePublicPath(urlPath) {
   return filePath;
 }
 
+function isAssetRequest(urlPath) {
+  const pathname = decodeURIComponent(urlPath.split('?')[0]);
+  return Boolean(path.extname(pathname));
+}
+
 const server = http.createServer((req, res) => {
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     send(res, 405, 'Method Not Allowed');
@@ -59,7 +64,7 @@ const server = http.createServer((req, res) => {
   fs.stat(filePath, (statError, stats) => {
     // Jangan mengirim index.html untuk aset yang hilang. Respons HTML pada
     // permintaan .js menyebabkan browser berhenti dengan SyntaxError yang sulit dilacak.
-    if (statError && path.extname(requestedPath)) {
+    if (statError && isAssetRequest(req.url || '/')) {
       send(res, 404, 'Not Found');
       return;
     }
