@@ -1,7 +1,7 @@
 {
   "functions": {
     "server.js": {
-      "includeFiles": "js/**"
+      "includeFiles": "{index.html,donasi.html,wmm2025.js,js/**}"
     }
   }
 }
