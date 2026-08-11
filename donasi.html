@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dukung pengembangan Miqatara melalui Trakteer.">
+  <title>Dukung Miqatara</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; color: #e8fff4; font-family: 'Plus Jakarta Sans', sans-serif; background: #032b22; }
+    .page { min-height: 100vh; overflow: hidden; padding: 24px; background: radial-gradient(circle at 82% 10%, rgba(251,191,36,.2), transparent 22rem), radial-gradient(circle at 4% 80%, rgba(16,185,129,.2), transparent 28rem), linear-gradient(135deg, #032b22, #075b46 65%, #066149); }
+    main { width: min(100%, 860px); margin: 0 auto; }
+    .back { color: #c9f6df; text-decoration: none; font-size: .9rem; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; padding: 8px 0; }
+    .back:hover { color: #fcd34d; }
+    .hero { text-align: center; padding: 48px 12px 28px; }
+    .eyebrow { display: inline-block; border: 1px solid rgba(255,255,255,.2); border-radius: 99px; padding: 7px 12px; color: #fde68a; font-size: .7rem; font-weight: 800; letter-spacing: .15em; text-transform: uppercase; background: rgba(255,255,255,.08); }
+    h1 { font-family: 'DM Serif Display', Georgia, serif; font-size: clamp(3.2rem, 10vw, 5.6rem); line-height: .9; letter-spacing: -.055em; margin: 18px 0; }
+    .lead { max-width: 600px; margin: 0 auto; line-height: 1.7; color: #c8ede0; }
+    .card { margin-top: 20px; padding: clamp(22px, 5vw, 38px); border-radius: 28px; background: rgba(255,255,255,.96); color: #12372d; box-shadow: 0 26px 75px rgba(0,0,0,.25); }
+    h2 { margin: 0; font-size: 1.25rem; }
+    .sub { color: #547367; font-size: .88rem; line-height: 1.6; margin: 8px 0 20px; }
+    .amounts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .amount { border: 1px solid #d7e8e0; color: #075b46; background: #f7fcf9; border-radius: 14px; padding: 14px 8px; cursor: pointer; font: inherit; font-weight: 800; transition: .15s ease; }
+    .amount:hover, .amount[aria-pressed="true"] { background: #047857; color: #fff; border-color: #047857; transform: translateY(-2px); }
+    label { display: block; color: #42675a; font-size: .78rem; font-weight: 800; margin: 22px 0 7px; text-transform: uppercase; letter-spacing: .06em; }
+    .custom { display: flex; align-items: center; border: 1px solid #cfe3da; border-radius: 14px; padding: 0 14px; }
+    .custom span { color: #477263; font-weight: 700; }
+    input { min-width: 0; width: 100%; padding: 14px 9px; border: 0; outline: 0; font: inherit; font-weight: 700; color: #12372d; }
+    .pay { width: 100%; margin-top: 16px; border: 0; border-radius: 14px; padding: 16px; cursor: pointer; color: #15372e; background: #fbbf24; font: inherit; font-weight: 800; font-size: 1rem; box-shadow: 0 9px 20px rgba(217,119,6,.2); }
+    .pay:hover { background: #fcd34d; }
+    .done { width: 100%; margin-top: 12px; border: 0; background: transparent; color: #047857; cursor: pointer; font: inherit; font-weight: 800; padding: 8px; }
+    .prayer { display: none; margin-top: 14px; padding: 14px; border-radius: 14px; color: #075b46; font-size: .9rem; font-weight: 700; line-height: 1.55; background: #ecfdf5; border: 1px solid #a7f3d0; }
+    .hadith { margin-top: 22px; border-radius: 20px; padding: 22px; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.16); }
+    .hadith p { font-family: 'DM Serif Display', Georgia, serif; font-size: 1.3rem; line-height: 1.35; margin: 0; }
+    .hadith cite { display: block; margin-top: 12px; color: #fde68a; font-style: normal; font-size: .8rem; font-weight: 700; }
+    .note { text-align: center; color: #a8d9c4; font-size: .75rem; margin: 20px 0 4px; }
+    @media (max-width: 420px) { .page { padding: 16px; } .amounts { grid-template-columns: repeat(2, 1fr); } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <main>
+      <a class="back" href="/">← Kembali ke Miqatara</a>
+      <section class="hero">
+        <span class="eyebrow">Dukung karya yang bermanfaat</span>
+        <h1>Setiap kebaikan<br>berarti.</h1>
+        <p class="lead">Donasi Anda membantu Miqatara tetap tersedia, ringan digunakan, dan terus berkembang untuk banyak orang.</p>
+      </section>
+
+      <section class="card" aria-labelledby="donation-title">
+        <h2 id="donation-title">Pilih nominal donasi</h2>
+        <p class="sub">Pembayaran diproses secara aman melalui halaman Trakteer milik <strong>@bintangdev</strong>.</p>
+        <div class="amounts" role="group" aria-label="Pilihan nominal donasi">
+          <button class="amount" data-amount="5000" aria-pressed="false">Rp5.000</button>
+          <button class="amount" data-amount="10000" aria-pressed="false">Rp10.000</button>
+          <button class="amount" data-amount="25000" aria-pressed="true">Rp25.000</button>
+          <button class="amount" data-amount="50000" aria-pressed="false">Rp50.000</button>
+          <button class="amount" data-amount="100000" aria-pressed="false">Rp100.000</button>
+          <button class="amount" data-amount="0" aria-pressed="false">Nominal lain</button>
+        </div>
+        <label for="custom-amount">Nominal sendiri (opsional)</label>
+        <div class="custom"><span>Rp</span><input id="custom-amount" inputmode="numeric" autocomplete="off" placeholder="Contoh: 75000" aria-label="Nominal donasi sendiri"></div>
+        <button class="pay" id="pay-button">Lanjutkan donasi Rp25.000 di Trakteer →</button>
+        <button class="done" id="done-button" hidden>Saya sudah berdonasi</button>
+        <div class="prayer" id="prayer-message" role="status">Jazakallahu khairan atas kebaikan Anda. Semoga Allah melancarkan rezeki, memberkahi harta, menjaga kesehatan, dan melipatgandakan setiap kebaikan Anda. Aamiin.</div>
+      </section>
+
+      <aside class="hadith">
+        <p>“Sedekah tidaklah mengurangi harta.”</p>
+        <cite>HR. Muslim no. 2588</cite>
+      </aside>
+      <p class="note">Nominal dipilih sebagai pengingat; masukkan nominal akhir pada halaman Trakteer.</p>
+    </main>
+  </div>
+  <script>
+    const trakteerUrl = 'https://trakteer.id/bintangdev';
+    const amountButtons = document.querySelectorAll('.amount');
+    const customAmount = document.getElementById('custom-amount');
+    const payButton = document.getElementById('pay-button');
+    const doneButton = document.getElementById('done-button');
+    const prayerMessage = document.getElementById('prayer-message');
+    let selectedAmount = 25000;
+
+    function formatRupiah(amount) { return new Intl.NumberFormat('id-ID').format(amount); }
+    function updatePayLabel() {
+      const custom = Number(customAmount.value.replace(/\D/g, ''));
+      const amount = custom > 0 ? custom : selectedAmount;
+      payButton.textContent = amount > 0 ? `Lanjutkan donasi Rp${formatRupiah(amount)} di Trakteer →` : 'Lanjutkan donasi di Trakteer →';
+    }
+    amountButtons.forEach(button => button.addEventListener('click', () => {
+      selectedAmount = Number(button.dataset.amount);
+      customAmount.value = '';
+      amountButtons.forEach(item => item.setAttribute('aria-pressed', item === button ? 'true' : 'false'));
+      updatePayLabel();
+      if (selectedAmount === 0) customAmount.focus();
+    }));
+    customAmount.addEventListener('input', updatePayLabel);
+    payButton.addEventListener('click', () => {
+      window.open(trakteerUrl, '_blank', 'noopener');
+      doneButton.hidden = false;
+    });
+    doneButton.addEventListener('click', () => {
+      prayerMessage.style.display = 'block';
+      doneButton.hidden = true;
+      localStorage.setItem('miqatara-donation-thanks', 'true');
+    });
+    if (localStorage.getItem('miqatara-donation-thanks') === 'true') prayerMessage.style.display = 'block';
+  </script>
+</body>
+</html>

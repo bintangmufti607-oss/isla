@@ -29,7 +29,11 @@ function send(res, statusCode, body, contentType = 'text/plain; charset=utf-8') 
 
 function resolvePublicPath(urlPath) {
   const decodedPath = decodeURIComponent(urlPath.split('?')[0]);
-  const requestedPath = decodedPath === '/' ? '/index.html' : decodedPath;
+  const requestedPath = decodedPath === '/'
+    ? '/index.html'
+    : decodedPath === '/donasi'
+      ? '/donasi.html'
+      : decodedPath;
   const filePath = path.normalize(path.join(ROOT, requestedPath));
 
   if (!filePath.startsWith(ROOT)) {
