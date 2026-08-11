@@ -111,8 +111,7 @@ function initializeApp() {
     }
 }
 
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeApp, { once: true });
-} else {
-    initializeApp();
-}
+// app-shell dimuat paling akhir, setelah seluruh elemen antarmuka tersedia.
+// Jangan menunggu DOMContentLoaded karena event itu juga tertahan oleh pustaka
+// PDF/ikon yang bersifat non-kritis.
+initializeApp();
