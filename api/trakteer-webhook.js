@@ -16,6 +16,13 @@ function parseBody(body) {
 module.exports = (req, res) => {
   res.setHeader('Cache-Control', 'no-store');
 
+  // Browser dan sebagian alat validasi URL mengakses endpoint dengan GET.
+  // Ini hanya status publik; event pembayaran tetap wajib POST + token rahasia.
+  if (req.method === 'GET') {
+    res.status(200).json({ ok: true, service: 'Miqatara Trakteer webhook' });
+    return;
+  }
+
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method Not Allowed' });
     return;
