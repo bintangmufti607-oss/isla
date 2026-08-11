@@ -53,7 +53,7 @@
 
       <section class="card" aria-labelledby="donation-title">
         <h2 id="donation-title">Pilih nominal donasi</h2>
-        <p class="sub">Pembayaran diproses secara aman melalui halaman Trakteer milik <strong>@bintangdev</strong>.</p>
+        <p class="sub">Setelah memilih nominal, Anda langsung dibawa ke formulir pembayaran aman Trakteer milik <strong>@bintangdev</strong>.</p>
         <div class="amounts" role="group" aria-label="Pilihan nominal donasi">
           <button class="amount" data-amount="5000" aria-pressed="false">Rp5.000</button>
           <button class="amount" data-amount="10000" aria-pressed="false">Rp10.000</button>
@@ -77,7 +77,10 @@
     </main>
   </div>
   <script>
-    const trakteerUrl = 'https://trakteer.id/bintangdev';
+    // Halaman /tip adalah checkout sederhana Trakteer, bukan profil kreator.
+    // Pembayaran tetap diproses pihak Trakteer agar metode bayar dan data
+    // pendukung tidak pernah melewati server Miqatara.
+    const trakteerUrl = 'https://trakteer.id/bintangdev/tip';
     const amountButtons = document.querySelectorAll('.amount');
     const customAmount = document.getElementById('custom-amount');
     const payButton = document.getElementById('pay-button');
@@ -100,14 +103,16 @@
     }));
     customAmount.addEventListener('input', updatePayLabel);
     payButton.addEventListener('click', () => {
-      window.open(trakteerUrl, '_blank', 'noopener');
-      doneButton.hidden = false;
+      localStorage.setItem('miqatara-awaiting-payment', 'true');
+      window.location.assign(trakteerUrl);
     });
     doneButton.addEventListener('click', () => {
       prayerMessage.style.display = 'block';
       doneButton.hidden = true;
+      localStorage.removeItem('miqatara-awaiting-payment');
       localStorage.setItem('miqatara-donation-thanks', 'true');
     });
+    if (localStorage.getItem('miqatara-awaiting-payment') === 'true') doneButton.hidden = false;
     if (localStorage.getItem('miqatara-donation-thanks') === 'true') prayerMessage.style.display = 'block';
   </script>
 </body>
