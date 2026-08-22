@@ -22,26 +22,228 @@
     </script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Naskh+Arabic:wght@500;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         body {
+            position: relative;
             font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fbf9;
             background-image:
                 radial-gradient(circle at 12% 0%, rgba(16, 185, 129, .13), transparent 28rem),
-                radial-gradient(circle at 90% 18%, rgba(245, 158, 11, .10), transparent 25rem);
+                radial-gradient(circle at 90% 18%, rgba(245, 158, 11, .10), transparent 25rem),
+                linear-gradient(30deg, rgba(5, 150, 105, .025) 12%, transparent 12.5%, transparent 87%, rgba(5, 150, 105, .025) 87.5%),
+                linear-gradient(150deg, rgba(5, 150, 105, .025) 12%, transparent 12.5%, transparent 87%, rgba(5, 150, 105, .025) 87.5%);
+            background-size: auto, auto, 44px 76px, 44px 76px;
+        }
+        .dark body {
+            background-color: #071c18;
+            background-image:
+                radial-gradient(circle at 12% 0%, rgba(16, 185, 129, .12), transparent 28rem),
+                radial-gradient(circle at 90% 18%, rgba(245, 158, 11, .07), transparent 25rem),
+                linear-gradient(30deg, rgba(52, 211, 153, .025) 12%, transparent 12.5%, transparent 87%, rgba(52, 211, 153, .025) 87.5%),
+                linear-gradient(150deg, rgba(52, 211, 153, .025) 12%, transparent 12.5%, transparent 87%, rgba(52, 211, 153, .025) 87.5%);
+            background-size: auto, auto, 44px 76px, 44px 76px;
+        }
+        .app-shell { position: relative; z-index: 1; }
+        .app-shell::before,
+        .app-shell::after {
+            position: fixed;
+            z-index: -1;
+            width: 15rem;
+            height: 15rem;
+            border: 1px solid rgba(5, 150, 105, .08);
+            border-radius: 50%;
+            content: '';
+            pointer-events: none;
+        }
+        .app-shell::before { left: -8rem; top: 38%; }
+        .app-shell::after { right: -9rem; bottom: 7%; }
+        .dark .app-shell::before,
+        .dark .app-shell::after { border-color: rgba(52, 211, 153, .08); }
+        .islamic-geometry {
+            opacity: .36;
+            background-image:
+                linear-gradient(45deg, transparent 42%, rgba(255,255,255,.14) 43%, rgba(255,255,255,.14) 45%, transparent 46%),
+                linear-gradient(-45deg, transparent 42%, rgba(255,255,255,.12) 43%, rgba(255,255,255,.12) 45%, transparent 46%);
+            background-size: 42px 42px;
+            -webkit-mask-image: linear-gradient(to left, #000, transparent 78%);
+            mask-image: linear-gradient(to left, #000, transparent 78%);
         }
         .brand-hero {
             background: linear-gradient(118deg, #052e24 0%, #075e48 54%, #0b7a5b 100%);
             box-shadow: 0 24px 60px rgba(6, 78, 59, .24);
+            border: 1px solid rgba(253, 230, 138, .12);
         }
         .brand-wordmark {
             font-family: 'DM Serif Display', Georgia, serif;
             letter-spacing: -.055em;
         }
         .orbital-ring { animation: float-orbit 9s ease-in-out infinite; }
+        .basmala {
+            font-family: 'Noto Naskh Arabic', serif;
+            font-size: 1.15rem;
+            line-height: 1;
+            color: rgba(254, 243, 199, .9);
+            letter-spacing: 0;
+        }
+        .mihrab-halo {
+            position: absolute;
+            left: clamp(1.5rem, 5vw, 4rem);
+            bottom: -7.5rem;
+            width: 25rem;
+            height: 22rem;
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 50% 50% 0 0;
+            pointer-events: none;
+        }
+        .mihrab-halo::before {
+            position: absolute;
+            inset: 1.4rem;
+            border: 1px solid rgba(253, 230, 138, .09);
+            border-radius: inherit;
+            content: '';
+        }
+        .eight-star {
+            position: absolute;
+            right: 12%;
+            top: 28%;
+            width: 2.5rem;
+            height: 2.5rem;
+            border: 1px solid rgba(253, 230, 138, .45);
+            transform: rotate(45deg);
+            animation: star-breathe 6s ease-in-out infinite;
+        }
+        .eight-star::before {
+            position: absolute;
+            inset: -1px;
+            border: inherit;
+            content: '';
+            transform: rotate(45deg);
+        }
+        @keyframes star-breathe {
+            50% { opacity: .58; transform: rotate(67.5deg) scale(.92); }
+        }
         @keyframes float-orbit {
             50% { transform: translateY(-10px) rotate(8deg); }
         }
         .dark .brand-hero { box-shadow: 0 24px 60px rgba(0, 0, 0, .35); }
+        .islamic-divider {
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            margin: -1rem auto 1.5rem;
+            width: min(100%, 24rem);
+            color: #b48a30;
+        }
+        .islamic-divider::before,
+        .islamic-divider::after {
+            height: 1px;
+            flex: 1;
+            background: linear-gradient(to var(--divider-direction, right), transparent, rgba(180, 138, 48, .42));
+            content: '';
+        }
+        .islamic-divider::after { --divider-direction: left; }
+        .divider-star {
+            width: .62rem;
+            height: .62rem;
+            border: 1px solid currentColor;
+            transform: rotate(45deg);
+        }
+        .islamic-card {
+            position: relative;
+            overflow: hidden;
+            border-color: rgba(5, 150, 105, .16) !important;
+            box-shadow: 0 12px 34px rgba(6, 78, 59, .055);
+        }
+        .islamic-card::before {
+            position: absolute;
+            inset: 0 0 auto;
+            height: 3px;
+            background: linear-gradient(90deg, #047857, #d4a93f 48%, transparent 82%);
+            content: '';
+        }
+        .islamic-card::after {
+            position: absolute;
+            right: -2rem;
+            top: -2rem;
+            width: 5rem;
+            height: 5rem;
+            border: 1px solid rgba(5, 150, 105, .08);
+            transform: rotate(45deg);
+            content: '';
+            pointer-events: none;
+        }
+        .dark .islamic-card {
+            border-color: rgba(52, 211, 153, .12) !important;
+            box-shadow: 0 14px 38px rgba(0, 0, 0, .14);
+        }
+        .islamic-card h2 { position: relative; }
+        .islamic-card h2::after {
+            display: inline-block;
+            width: 1.8rem;
+            height: 1px;
+            margin-left: .65rem;
+            vertical-align: middle;
+            background: linear-gradient(90deg, rgba(180,138,48,.65), transparent);
+            content: '';
+        }
+        .prayer-overview {
+            border: 1px solid rgba(253, 230, 138, .16);
+            background:
+                linear-gradient(45deg, transparent 47%, rgba(255,255,255,.035) 48%, rgba(255,255,255,.035) 52%, transparent 53%) 0 0 / 32px 32px,
+                linear-gradient(135deg, #059669, #065f46);
+        }
+        .prayer-overview::before {
+            position: absolute;
+            width: 12rem;
+            height: 13rem;
+            right: 1.5rem;
+            bottom: -8rem;
+            border: 1px solid rgba(255,255,255,.11);
+            border-radius: 50% 50% 0 0;
+            content: '';
+        }
+        [id^="card-"] {
+            transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+        }
+        [id^="card-"]:hover {
+            transform: translateY(-3px);
+            border-color: rgba(5, 150, 105, .28) !important;
+            box-shadow: 0 10px 22px rgba(6, 78, 59, .08);
+        }
+        input, select {
+            transition: border-color .18s ease, box-shadow .18s ease, background-color .18s ease;
+        }
+        input:focus, select:focus {
+            border-color: rgba(5, 150, 105, .55) !important;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, .1);
+        }
+        .site-footer {
+            position: relative;
+            overflow: hidden;
+            margin-top: 2rem;
+            padding: 2rem 1.25rem 1.4rem;
+            border: 1px solid rgba(5, 150, 105, .12);
+            border-radius: 1.5rem;
+            color: #55736a;
+            background: rgba(255, 255, 255, .58);
+            text-align: center;
+        }
+        .dark .site-footer { color: #94b9aa; background: rgba(15, 46, 39, .46); }
+        .footer-arches {
+            display: flex;
+            justify-content: center;
+            gap: .35rem;
+            height: 1.7rem;
+            margin-bottom: 1rem;
+            opacity: .6;
+        }
+        .footer-arches span {
+            width: 1.6rem;
+            border: 1px solid #b48a30;
+            border-bottom: 0;
+            border-radius: 50% 50% 0 0;
+        }
+        .footer-brand { font-family: 'DM Serif Display', Georgia, serif; color: #047857; font-size: 1.25rem; }
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -55,6 +257,11 @@
         }
         .dark .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #475569;
+        }
+        @media (max-width: 640px) {
+            .mihrab-halo { left: -4rem; width: 21rem; }
+            .eight-star { right: 13%; top: 18%; width: 1.7rem; height: 1.7rem; }
+            .islamic-geometry { opacity: .24; }
         }
     </style>
     <script>
@@ -82,11 +289,15 @@
     <div class="app-shell max-w-7xl mx-auto px-4 py-6 md:py-8">
         <!-- Header -->
         <header class="brand-hero relative isolate overflow-hidden rounded-[2rem] px-6 py-8 sm:px-10 sm:py-10 mb-8 text-white">
+            <div class="islamic-geometry absolute inset-0" aria-hidden="true"></div>
+            <div class="mihrab-halo" aria-hidden="true"></div>
+            <div class="eight-star" aria-hidden="true"></div>
             <div class="absolute -right-20 -top-24 h-80 w-80 rounded-full border border-white/10"></div>
             <div class="orbital-ring absolute -right-8 top-8 h-52 w-52 rounded-full border border-amber-200/30"></div>
             <div class="absolute right-14 top-24 h-3 w-3 rounded-full bg-amber-300 shadow-[0_0_32px_10px_rgba(252,211,77,.25)]"></div>
             <div class="relative flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
                 <div>
+                    <div class="basmala mb-3" lang="ar" dir="rtl">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
                     <div class="mb-3 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-[10px] font-bold tracking-[.18em] text-emerald-50 uppercase backdrop-blur-sm">
                         <span class="h-1.5 w-1.5 rounded-full bg-amber-300"></span> Kalender Langit
                     </div>
@@ -106,13 +317,15 @@
             </div>
         </header>
 
+        <div class="islamic-divider" aria-hidden="true"><span class="divider-star"></span></div>
+
         <!-- Main Grid Layout -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
             
             <!-- Panel Kiri: Input Parameter, Atmosfer & Kiblat (4 Kolom) -->
             <div class="lg:col-span-4 space-y-6">
                 <!-- Parameter Tempat -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+                <div class="islamic-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
                     <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
                         <i data-lucide="map-pin" class="w-5 h-5 text-primary-500"></i>
                         Parameter Tempat
@@ -153,7 +366,7 @@
                 </div>
 
                 <!-- Parameter Fisika Atmosfer & Konvensi Dunia -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+                <div class="islamic-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
                     <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
                         <i data-lucide="sliders" class="w-5 h-5 text-primary-500"></i>
                         Konvensi & Fisika Atmosfer
@@ -201,7 +414,7 @@
                 </div>
 
                 <!-- Card Kompas Kiblat Astronomis Berkinerja Tinggi -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm flex flex-col items-center relative overflow-hidden">
+                <div class="islamic-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm flex flex-col items-center relative overflow-hidden">
                     <h2 class="text-lg font-bold mb-1 flex items-center gap-2 self-start w-full">
                         <i data-lucide="compass" class="w-5 h-5 text-primary-500"></i>
                         Arah Kiblat Magnetik
@@ -272,7 +485,7 @@
             <!-- Panel Kanan: Hasil, Hitung Mundur & Kurva Visualisasi (8 Kolom) -->
             <div class="lg:col-span-8 space-y-6">
                 <!-- Hero Section: Jam Real-Time & Hitung Mundur Shalat -->
-                <div class="bg-gradient-to-br from-primary-600 to-emerald-800 rounded-2xl p-6 text-white shadow-md relative overflow-hidden">
+                <div class="prayer-overview bg-gradient-to-br from-primary-600 to-emerald-800 rounded-2xl p-6 text-white shadow-md relative overflow-hidden">
                     <div class="absolute -right-6 -bottom-10 opacity-10">
                         <i data-lucide="clock" class="w-48 h-48"></i>
                     </div>
@@ -297,7 +510,7 @@
                 </div>
 
                 <!-- Hasil Jadwal Hari Ini -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+                <div class="islamic-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                         <div>
                             <h2 class="text-lg font-bold flex items-center gap-2">
@@ -369,7 +582,7 @@
                 </div>
 
                 <!-- Bagian Tabel Jadwal 30 Hari -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+                <div class="islamic-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
                     <div class="flex justify-between items-center mb-4">
                         <h2 class="text-base font-bold flex items-center gap-2">
                             <i data-lucide="calendar-range" class="w-5 h-5 text-primary-500"></i>
@@ -400,7 +613,7 @@
                 </div>
 
                 <!-- Kurva Elevasi Matahari -->
-                <div class="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
+                <div class="islamic-card bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-sm">
                     <h2 class="text-base font-bold mb-4 flex items-center gap-2">
                         <i data-lucide="activity" class="w-5 h-5 text-primary-500"></i>
                         Kurva Elevasi Matahari Harian (Solar Path)
@@ -416,6 +629,14 @@
                 </div>
             </div>
         </div>
+
+        <footer class="site-footer">
+            <div class="footer-arches" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="footer-brand">Miqatara</div>
+            <p class="mt-1 text-xs">Menjaga waktu, mengarahkan langkah.</p>
+        </footer>
     </div>
 
     <script src="wmm2025.js"></script>

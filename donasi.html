@@ -55,6 +55,29 @@
     .page::before { width: 360px; height: 360px; right: -170px; top: -160px; }
     .page::after { width: 210px; height: 210px; right: -60px; top: -70px; }
 
+    .geometric-pattern {
+      position: absolute;
+      width: min(48vw, 570px);
+      height: min(48vw, 570px);
+      right: -70px;
+      top: 9%;
+      color: rgba(247, 225, 156, .13);
+      transform: rotate(9deg);
+      pointer-events: none;
+    }
+
+    .mosque-silhouette {
+      position: absolute;
+      z-index: 0;
+      right: 0;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 148px;
+      color: rgba(1, 30, 23, .28);
+      pointer-events: none;
+    }
+
     main {
       position: relative;
       z-index: 1;
@@ -82,6 +105,17 @@
       align-items: center;
       min-height: calc(100vh - 82px);
       padding: 42px 0 64px;
+    }
+
+    .basmala {
+      width: fit-content;
+      margin: 0 0 22px;
+      color: #f7dfa0;
+      font-family: 'Times New Roman', serif;
+      font-size: clamp(1.25rem, 3vw, 1.65rem);
+      line-height: 1.4;
+      letter-spacing: .02em;
+      text-shadow: 0 0 28px rgba(248, 200, 94, .18);
     }
 
     .eyebrow {
@@ -126,9 +160,46 @@
       line-height: 1.75;
     }
 
+    .arabesque-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: min(100%, 420px);
+      margin-top: 30px;
+      color: var(--gold);
+      opacity: .72;
+    }
+
+    .arabesque-divider::before,
+    .arabesque-divider::after {
+      width: 100%;
+      height: 1px;
+      content: '';
+      background: linear-gradient(90deg, transparent, currentColor);
+    }
+
+    .arabesque-divider::after { background: linear-gradient(90deg, currentColor, transparent); }
+
+    .arabesque-divider span {
+      display: grid;
+      flex: 0 0 auto;
+      width: 27px;
+      height: 27px;
+      place-items: center;
+      border: 1px solid currentColor;
+      transform: rotate(45deg);
+      font-size: .68rem;
+    }
+
+    .arabesque-divider b {
+      display: block;
+      font-weight: 400;
+      transform: rotate(-45deg);
+    }
+
     .hadith {
       max-width: 620px;
-      margin-top: 38px;
+      margin-top: 26px;
       padding: 20px 22px;
       border-left: 2px solid var(--gold);
       background: linear-gradient(90deg, rgba(255, 255, 255, .08), transparent);
@@ -161,6 +232,31 @@
       box-shadow: 0 32px 90px rgba(0, 20, 14, .32);
     }
 
+    .support-card > *:not(.card-arch) { position: relative; z-index: 1; }
+
+    .card-arch {
+      position: absolute;
+      z-index: 0;
+      width: 210px;
+      height: 210px;
+      right: -34px;
+      top: -72px;
+      border: 1px solid rgba(5, 150, 105, .14);
+      border-radius: 105px 105px 24px 24px;
+      transform: rotate(10deg);
+    }
+
+    .card-arch::before,
+    .card-arch::after {
+      position: absolute;
+      content: '';
+      border: 1px solid rgba(5, 150, 105, .1);
+      border-radius: 50%;
+    }
+
+    .card-arch::before { inset: 24px; }
+    .card-arch::after { inset: 52px; }
+
     .support-card::after {
       position: absolute;
       width: 150px;
@@ -172,7 +268,7 @@
       content: '';
     }
 
-    .heart {
+    .emblem {
       display: grid;
       width: 54px;
       height: 54px;
@@ -180,8 +276,9 @@
       border-radius: 17px;
       color: #047857;
       background: #dff9ed;
-      font-size: 1.55rem;
     }
+
+    .emblem svg { width: 31px; height: 31px; fill: currentColor; }
 
     h2 { margin: 22px 0 8px; font-size: 1.5rem; line-height: 1.25; }
 
@@ -251,6 +348,8 @@
     }
 
     .prayer {
+      position: relative;
+      overflow: hidden;
       margin-top: 17px;
       padding: 16px;
       border: 1px solid #b8efd5;
@@ -262,6 +361,17 @@
       line-height: 1.65;
     }
 
+    .prayer::after {
+      position: absolute;
+      width: 52px;
+      height: 52px;
+      right: -26px;
+      bottom: -26px;
+      border: 1px solid rgba(5, 150, 105, .2);
+      transform: rotate(45deg);
+      content: '';
+    }
+
     .prayer strong { display: block; margin-bottom: 4px; color: #064e3b; }
 
     @media (max-width: 780px) {
@@ -269,19 +379,39 @@
       .layout { grid-template-columns: 1fr; min-height: auto; padding: 48px 0; }
       h1 { font-size: clamp(4rem, 20vw, 6.5rem); }
       .support-card { max-width: 540px; }
+      .geometric-pattern { width: 460px; height: 460px; right: -240px; top: 18%; }
+      .mosque-silhouette { height: 90px; opacity: .7; }
     }
   </style>
 </head>
 <body>
   <div class="page">
+    <svg class="geometric-pattern" viewBox="0 0 320 320" aria-hidden="true">
+      <defs>
+        <pattern id="islamic-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+          <path d="M40 2 52 28 78 40 52 52 40 78 28 52 2 40 28 28Z" fill="none" stroke="currentColor" stroke-width="1"/>
+          <path d="M40 14 66 40 40 66 14 40Z" fill="none" stroke="currentColor" stroke-width="1"/>
+          <circle cx="40" cy="40" r="12" fill="none" stroke="currentColor" stroke-width="1"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#islamic-grid)"/>
+    </svg>
+
+    <svg class="mosque-silhouette" viewBox="0 0 1440 180" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 180V142h110v-18h26V73h9V45h8V25h8v20h8v28h9v51h26v18h84v-30h26V87c0-35 23-59 57-76 34 17 57 41 57 76v25h26v30h98v-22h30V72h8V42h8V18h8v24h8v30h8v48h30v22h92v-17h24V92c0-27 18-47 45-61 27 14 45 34 45 61v33h24v17h100v-28h28V67h8V39h8V16h8v23h8v28h8v47h28v28h102v38Z" fill="currentColor"/>
+    </svg>
+
     <main>
       <a class="back" href="index.html" aria-label="Kembali ke halaman utama Miqatara">← Kembali ke Miqatara</a>
 
       <div class="layout">
         <section aria-labelledby="page-title">
+          <p class="basmala" lang="ar" dir="rtl">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
           <span class="eyebrow">Dukung karya yang bermanfaat</span>
           <h1 id="page-title">Kebaikan<br>terus mengalir.</h1>
           <p class="lead">Miqatara dibuat agar waktu shalat dan arah kiblat dapat diakses dengan mudah oleh siapa pun. Dukungan Anda membantu aplikasi ini tetap tersedia dan terus berkembang.</p>
+
+          <div class="arabesque-divider" aria-hidden="true"><span><b>✦</b></span></div>
 
           <aside class="hadith" aria-label="Hadis tentang sedekah">
             <blockquote>“Sedekah tidaklah mengurangi harta.”</blockquote>
@@ -290,7 +420,13 @@
         </section>
 
         <section class="support-card" aria-labelledby="support-title">
-          <div class="heart" aria-hidden="true">♥</div>
+          <div class="card-arch" aria-hidden="true"></div>
+          <div class="emblem" aria-hidden="true">
+            <svg viewBox="0 0 32 32">
+              <path d="M20.9 24.5A10.5 10.5 0 1 1 18 5.2a8.7 8.7 0 1 0 2.9 19.3Z"/>
+              <path d="m23.6 8.2 1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2-1.6-1.5 2.2-.3Z"/>
+            </svg>
+          </div>
           <h2 id="support-title">Dukung Miqatara</h2>
           <p class="card-copy">Nominal dan metode pembayaran dipilih satu kali di halaman resmi Trakteer milik <strong>@bintangdev</strong>.</p>
 
